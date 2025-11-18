@@ -1,24 +1,65 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
+import productService from './services/productService';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/layout/Header';
 import './App.css';
 
-function App() {
+function HomePage() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="page">
+      <h1>Home Page</h1>
     </div>
+  );
+}
+
+function ProductsPage() {
+  return (
+    <div className="page">
+      <h1>Products Page</h1>
+    </div>
+  );
+}
+
+function AddProductPage() {
+  return (
+    <div className="page">
+      <h1>Add Product Page</h1>
+    </div>
+  );
+}
+
+function App() {
+  useEffect(() => {
+    // Test API khi component mount
+    async function fetchProducts() {
+      try {
+        const products = await productService.getAllProducts();
+        console.log('✅ Products:', products);
+      } catch (error) {
+        console.error('❌ Error:', error);
+      }
+    }
+
+    fetchProducts();
+  }, []);
+
+  return (
+    <Router>
+      <div className="app">
+        {/* Header hiển thị ở mọi trang */}
+        <Header />
+
+        {/* Main content - Thay đổi theo route */}
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/add-product" element={<AddProductPage />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
