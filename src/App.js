@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
-import productService from './services/productService';
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/layout/Header';
-import './App.css';
+import { useEffect } from "react";
+import productService from "./services/productService";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/layout/Header";
+import "./App.css";
+import TestPage from "./pages/TestPage";
 
 function HomePage() {
   return (
@@ -35,9 +36,9 @@ function App() {
     async function fetchProducts() {
       try {
         const products = await productService.getAllProducts();
-        console.log('✅ Products:', products);
+        console.log("✅ Products:", products);
       } catch (error) {
-        console.error('❌ Error:', error);
+        console.error("❌ Error:", error);
       }
     }
 
@@ -56,6 +57,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/add-product" element={<AddProductPage />} />
+            <Route path="/test" element={<TestPage />} />
           </Routes>
         </main>
       </div>
