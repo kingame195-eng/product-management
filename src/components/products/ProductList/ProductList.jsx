@@ -4,12 +4,14 @@ import ProductCard from "../ProductCard";
 // import LoadingSkeleton from "../../common/LoadingSkeleton";
 import "./ProductList.css";
 import SearchBar from "../../common/SearchBar";
+import useDebounce from "../../../hooks/useDebounce";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
   useEffect(() => {
     fetchProducts();
@@ -36,7 +38,8 @@ function ProductList() {
   };
 
   const filteredProducts = products.filter((product) => {
-    const query = searchQuery.toLowerCase();
+    //const query = searchQuery.toLowerCase();
+    const query = debouncedSearchQuery.toLowerCase();
     const title = product.title.toLowerCase();
 
     return title.includes(query);
