@@ -5,14 +5,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
 import "./App.css";
 import TestPage from "./pages/TestPage";
+import HomePage from "./pages/HomePage";
 
-function HomePage() {
-  return (
-    <div className="page">
-      <h1>Home Page</h1>
-    </div>
-  );
-}
+// function HomePage() {
+//   return (
+//     <div className="page">
+//       <h1>Home Page</h1>
+//     </div>
+//   );
+// }
 
 function ProductsPage() {
   return (

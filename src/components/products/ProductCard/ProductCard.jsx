@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import "./ProductCard.css";
 
 function ProductCard({ id, title, price, image, category, rating }) {
   const formatPrice = (price) => {
@@ -46,5 +48,17 @@ function ProductCard({ id, title, price, image, category, rating }) {
     </div>
   );
 }
+
+ProductCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  rating: PropTypes.shape({
+    rate: PropTypes.number.isRequired,
+    count: PropTypes.number.isRequired,
+  }).isRequired,
+};
 
 export default ProductCard;
